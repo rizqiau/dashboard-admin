@@ -21,7 +21,7 @@
         class="flex flex-col sm:flex-row justify-between sm:w-11/12 lg:w-full"
       >
         <img class="w-32 ml-4" src="../../../img/logo.png" alt="logo" />
-        <p class="sm:text-xl">Fauzi Azhari</p>
+        <p class="sm:text-xl mr-6">ADMIN</p>
       </div>
       <div class="lg:hidden">
         <button id="open-sidebar" class="text-3xl">
@@ -36,14 +36,8 @@
       ></div>
       <aside
         id="sidebar"
-        class="p-4 hidden lg:block text-secondary-gray font-medium w-[250px] h-screen lg:h-full absolute lg:static top-0 left-0 bg-white"
+        class="p-4 hidden lg:block text-secondary-gray font-medium lg:w-[250px] h-screen lg:h-full absolute lg:static top-0 left-0 bg-white shrink-0 overflow-auto w-[300px]"
       >
-        <button
-          id="close-sidebar"
-          class="absolute top-[50%] right-[-35px] text-7xl lg:hidden"
-        >
-          <i class="ri-arrow-left-circle-fill bg-white rounded-full"></i>
-        </button>
         <h4 class="mb-3 font-semibold">Menu</h4>
         <div class="mb-2">
           <a
@@ -70,7 +64,7 @@
               >
             </div>
             <div class="pl-6">
-              <a href="#" class="hover:text-secondary-blue"
+              <a href="../administrator/profile.html" class="hover:text-secondary-blue"
                 ><i class="ri-profile-line mr-2"></i>profil hotel</a
               >
             </div>
@@ -133,17 +127,19 @@
           </details>
         </div>
         <div class="mt-2">
-          <a class="hover:text-secondary-blue" href="#"
+          <a class="hover:text-secondary-blue" href="../Laporan/laporan.html"
             ><i class="ri-folder-2-line mr-2"></i>Laporan</a
           >
         </div>
       </aside>
+      <button id="close-sidebar" class="absolute top-[-3px] left-[260px] text-6xl hidden"><i
+        class="ri-arrow-left-circle-fill bg-white rounded-full"></i></button>
       <main
         class="bg-primary-gray grow overflow-y-auto h-[calc(100vh-67.33px)]"
       >
         <h1 class="p-4 font-raleway text-2xl font-semibold">List Kamar</h1>
         <form
-          class="font-roboto px-6 mx-4 border rounded-lg bg-white min-w-[800px] max-lg:px-4"
+          class="font-roboto px-6 mx-4 border rounded-lg bg-white max-lg:px-4 overflow-auto"
         >
           <div class="flex justify-between m-4">
             <button
