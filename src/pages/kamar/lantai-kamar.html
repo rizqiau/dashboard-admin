@@ -8,26 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css">
     <script src="../../js/responsiveSidebar.js" defer></script>
-    <script src="../../js/modalCheckin.js" defer></script>
+    <script src="../../js/lantai-kamar.js" defer></script>
 </head>
 
 <body>
-    <header class="flex justify-between items-center bg-primary-blue p-4 text-secondary-gray h-[67.33px]">
+    <header class="flex justify-between items-center bg-primary-blue p-4 text-secondary-gray h-[67.33px] min-w-[270px]">
         <div class="flex flex-col sm:flex-row justify-between sm:w-11/12 lg:w-full">
-            <h1 class="font-medium text-xl sm:text-2xl"><i class="ri-hotel-fill mr-2"></i>My Hotel</h1>
-            <p class="sm:text-xl">Fauzi Azhari</p>
+            <img class="w-32 ml-4" src="../../../img/logo.png" alt="logo" />
+            <p class="sm:text-xl mr-6">ADMIN</p>
         </div>
         <div class="lg:hidden">
             <button id="open-sidebar" class="text-3xl"><i class="ri-menu-line"></i></button>
         </div>
     </header>
-    <div class="flex h-[calc(100vh-67.33px)]">
+    <div id="container" class="flex h-[calc(100vh-67.33px)] min-w-[270px]">
         <div id="sidebar-overlay" class="hidden lg:hidden bg-black h-screen w-screen absolute top-0 left-0 opacity-90">
         </div>
         <aside id="sidebar"
-            class="p-4 hidden lg:block text-secondary-gray font-medium w-[250px] h-screen lg:h-full absolute lg:static top-0 left-0 bg-white">
-            <button id="close-sidebar" class="absolute top-[50%] right-[-35px] text-7xl lg:hidden"><i
-                    class="ri-arrow-left-circle-fill bg-white rounded-full"></i></button>
+            class="p-4 hidden lg:block text-secondary-gray font-medium lg:w-[250px] h-screen lg:h-full absolute lg:static top-0 left-0 bg-white shrink-0 overflow-auto w-[300px]">
             <h4 class="mb-3 font-semibold">Menu</h4>
             <div class="mb-2">
                 <a class="hover:text-secondary-blue" href="../dashboard/dashboard.html"><i
@@ -39,11 +37,11 @@
                             class="ri-settings-5-fill mr-2"></i>Pengaturan<i class="ri-arrow-drop-down-line"></i>
                     </summary>
                     <div class="pl-6">
-                        <a class="hover:text-secondary-blue" href="#"><i
+                        <a class="hover:text-secondary-blue" href="../administrator/list-admin.html"><i
                                 class="ri-user-settings-line mr-2"></i>Administrator</a>
                     </div>
                     <div class="pl-6">
-                        <a href="#" class="hover:text-secondary-blue"><i class="ri-profile-line mr-2"></i>profil
+                        <a href="../administrator/profile.html" class="hover:text-secondary-blue"><i class="ri-profile-line mr-2"></i>profil
                             hotel</a>
                     </div>
                 </details>
@@ -60,7 +58,7 @@
                             Kamar</a>
                     </div>
                     <div class="pl-6">
-                        <a href="#" class="hover:text-secondary-blue"><i class="ri-hotel-bed-line mr-2"></i>List
+                        <a href="../kamar/list-kamar.html" class="hover:text-secondary-blue"><i class="ri-hotel-bed-line mr-2"></i>List
                             Kamar</a>
                     </div>
                 </details>
@@ -68,7 +66,7 @@
                     <summary class="hover:text-secondary-blue cursor-pointer list-none space-y-2"><i
                             class="ri-wallet-2-fill mr-2"></i>Transaksi<i class="ri-arrow-drop-down-line"></i></summary>
                     <div class="pl-6">
-                        <a class="hover:text-secondary-blue" href="#"><i class="ri-notification-3-fill mr-2"></i>Pesan
+                        <a class="hover:text-secondary-blue" href="../transaksi/pesankamar.html"><i class="ri-notification-3-fill mr-2"></i>Pesan
                             Kamar</a>
                     </div>
                     <div class="pl-6">
@@ -77,57 +75,100 @@
                             In</a>
                     </div>
                     <div class="pl-6">
-                        <a href="#" class="hover:text-secondary-blue"><i class="ri-notification-3-fill mr-2"></i>Check
+                        <a href="../transaksi/check-out.html" class="hover:text-secondary-blue"><i class="ri-notification-3-fill mr-2"></i>Check
                             Out</a>
                     </div>
                 </details>
             </div>
             <div class="mt-2">
-                <a class="hover:text-secondary-blue" href="#"><i class="ri-folder-2-line mr-2"></i>Laporan</a>
+                <a class="hover:text-secondary-blue" href="../Laporan/laporan.html"><i class="ri-folder-2-line mr-2"></i>Laporan</a>
             </div>
         </aside>
-        <main class="bg-primary-gray grow overflow-y-auto">
-            <form class="font-roboto h-[calc(100vh-67.33px)] p-8 px-12">
-                <h1 class="pl-4 font-raleway font-bold text-lg text-secondary-gray">Lantai Kamar</h1>
-                <div class="flex justify-between m-4">
-                    <button class="py-1 px-5 bg-blue-400 rounded-md text-sm text-white">
+        <button id="close-sidebar" class="absolute top-[-3px] left-[260px] text-6xl hidden"><i
+            class="ri-arrow-left-circle-fill bg-white rounded-full"></i></button>
+        <main class="bg-primary-gray grow overflow-y-auto h-[calc(100vh-67.33px)]">
+            <h1 class="p-4 font-raleway text-2xl font-semibold">Lantai Kamar</h1>
+            <form class="font-roboto px-4 mx-4 border rounded-lg bg-white max-md:text-sm overflow-auto">
+                <div class="grid gap-5 place-items-start sm:flex justify-between m-4">
+                    <button id="tambah" type="button" class="py-1 px-5 bg-blue-400 rounded-md text-sm text-white hover:bg-hover-blue">
                         <i class="ri-hotel-bed-line mr-2"></i>Tambah
                     </button>
-                    <input type="search" placeholder="search..." class="border rounded-[20px] px-2 text-center text-secondary-gray focus:outline-none text-sm">
+                    <input type="search" placeholder="cari..." class="pl-4 border border-secondary-gray rounded-[20px] focus:outline-none focus:border-gray-500 order-first sm:order-last text-lg">
                 </div>
-                <table class="text-secondary-gray bg-white border-collapse w-full">
+                <table id="tabel" class="mb-4 text-zinc-600 w-full">
                     <thead>
                         <tr>
-                            <th class="border border-b-2 border-opacity-10 border-secondary-gray p-4 text-left">no</th>
-                            <th class="border border-b-2 border-opacity-10 border-secondary-gray p-4 text-left">Lantai Kamar</th>
-                            <th class="border border-b-2 border-opacity-10 border-secondary-gray p-4 text-left">Keterangan</th>
-                            <th class="border border-b-2 border-opacity-10 border-secondary-gray p-4 text-left">Status</th>
-                            <th class="border border-b-2 border-opacity-10 border-secondary-gray p-4 text-left w-[210px]">Opsi</th>
+                            <th class="border border-b-2 border-opacity-10 border-secondary-blue p-4 text-left">No</th>
+                            <th class="border border-b-2 border-opacity-10 border-secondary-blue p-4 text-left">Lantai Kamar</th>
+                            <th class="border border-b-2 border-opacity-10 border-secondary-blue p-4 text-left min-w-[250px]">Keterangan</th>
+                            <th class="border border-b-2 border-opacity-10 border-secondary-blue p-4 text-left">Status</th>
+                            <th class="border border-b-2 border-opacity-10 border-secondary-blue p-4 text-left">Opsi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table_body">
                         <tr>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell="">1</td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell="">5</td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell=""></td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell="">tersedia</td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10 flex flex-nowrap justify-start">
-                                    <button class="mr-1 py-1 px-5 bg-blue-400 rounded-md"><i class="ri-search-line text-white"></i></button>
-                                    <button class="mr-1 py-1 px-5 bg-blue-400 rounded-md"><i class="ri-delete-bin-line text-white"></i></button>
-                                    <button class="py-1 px-5 bg-blue-400 rounded-md"><i class="ri-refresh-line text-white"></i></button>
+                            <td>1</td>
+                            <td>5</td>
+                            <td>Bahan dasar kayu oak</td>
+                            <td>tersedia</td>
+                            <td>
+                                <div class="flex justify-center items-center flex-nowrap">
+                                    <button type="button" title="detail" class="detail mr-1 py-1 px-5 bg-green-400 rounded-md hover:bg-hover-green"><i class="ri-search-line text-white"></i></button>
+                                    <button type="button" title="hapus" class="hapus mr-1 py-1 px-5 bg-red-400 rounded-md hover:bg-hover-red"><i class="ri-delete-bin-line text-white"></i></button>
+                                    <button type="button" title="edit" class="edit py-1 px-5 bg-yellow-400 rounded-md hover:bg-hover-yellow"><i class="ri-file-edit-line text-white"></i></button>
+                                </div>
                             </td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell="">2</td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell="">7</td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell=""></td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10"  data-cell="">full</td>
-                            <td class="p-4 border-secondary-gray border border-b-2 border-opacity-10 flex flex-nowrap justify-start">
-                                    <button class="mr-1 py-1 px-5 bg-blue-400 rounded-md"><i class="ri-search-line text-white"></i></button>
-                                    <button class="mr-1 py-1 px-5 bg-blue-400 rounded-md"><i class="ri-delete-bin-line text-white"></i></button>
-                                    <button class="py-1 px-5 bg-blue-400 rounded-md"><i class="ri-refresh-line text-white"></i></button>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>Dilapisi granit persia</td>
+                            <td>penuh</td>
+                            <td>
+                                <div class="flex justify-center items-center flex-nowrap">
+                                    <button type="button" title="detail" class="detail mr-1 py-1 px-5 bg-green-400 rounded-md hover:bg-hover-green"><i class="ri-search-line text-white"></i></button>
+                                    <button type="button" title="hapus" class="hapus mr-1 py-1 px-5 bg-red-400 rounded-md hover:bg-hover-red"><i class="ri-delete-bin-line text-white"></i></button>
+                                    <button type="button" title="edit" class="edit py-1 px-5 bg-yellow-400 rounded-md hover:bg-hover-yellow"><i class="ri-file-edit-line text-white"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>Bahan dasar kayu jati</td>
+                            <td>tersedia</td>
+                            <td>
+                                <div class="flex justify-center items-center flex-nowrap">
+                                    <button type="button" title="detail" class="detail mr-1 py-1 px-5 bg-green-400 rounded-md hover:bg-hover-green"><i class="ri-search-line text-white"></i></button>
+                                    <button type="button" title="hapus" class="hapus mr-1 py-1 px-5 bg-red-400 rounded-md hover:bg-hover-red"><i class="ri-delete-bin-line text-white"></i></button>
+                                    <button type="button" title="edit" class="edit py-1 px-5 bg-yellow-400 rounded-md hover:bg-hover-yellow"><i class="ri-file-edit-line text-white"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>Bahan dasar kayu gaharu</td>
+                            <td>tersedia</td>
+                            <td>
+                                <div class="flex justify-center items-center flex-nowrap">
+                                    <button type="button" title="detail" class="detail mr-1 py-1 px-5 bg-green-400 rounded-md hover:bg-hover-green"><i class="ri-search-line text-white"></i></button>
+                                    <button type="button" title="hapus" class="hapus mr-1 py-1 px-5 bg-red-400 rounded-md hover:bg-hover-red"><i class="ri-delete-bin-line text-white"></i></button>
+                                    <button type="button" title="edit" class="edit py-1 px-5 bg-yellow-400 rounded-md hover:bg-hover-yellow"><i class="ri-file-edit-line text-white"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>1</td>
+                            <td>Dengan marmer utuh</td>
+                            <td>tersedia</td>
+                            <td>
+                                <div class="flex justify-center items-center flex-nowrap">
+                                    <button type="button" title="detail" class="detail mr-1 py-1 px-5 bg-green-400 rounded-md hover:bg-hover-green"><i class="ri-search-line text-white"></i></button>
+                                    <button type="button" title="hapus" class="hapus mr-1 py-1 px-5 bg-red-400 rounded-md hover:bg-hover-red"><i class="ri-delete-bin-line text-white"></i></button>
+                                    <button type="button" title="edit" class="edit py-1 px-5 bg-yellow-400 rounded-md hover:bg-hover-yellow"><i class="ri-file-edit-line text-white"></i></button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -135,6 +176,159 @@
             </form>
         </main>
     </div>
+    <div id="layer" class="hidden bg-black absolute top-0 left-0 opacity-80 w-screen min-w-[270px]"></div>
+    <!-- modal tambah form -->
+        <div id="modal-add" class="hidden absolute top-0 min-w-[270px] w-full justify-center items-center shadow-lg overflow-auto">
+            <div class="grid grid-cols-1 bg-white px-8 py-16 rounded-sm lg:w-[900px] max-lg:max-h-[450px] overflow-auto">
+                <div class="text-center text-3xl font-semibold">
+                    Tambah Lantai Kamar
+                </div>
+                <form action="" class="text-sm mt-4 overflow-auto">
+                    <div class="grid mx-sm:grid-cols-1 lg:grid-cols-2 lg:my-8 min-w-[350px]">
+                        <div class="grid gap-1 mb-2 ml-2">
+                            <label for="nomor" class="text-left">No</label>
+                            <input id="add-nomor" type="text" disabled class="font-raleway h-10 px-2 border rounded-sm bg-gray-50 md:w-[500px] lg:w-full">
+                        </div>
+                        <div class="grid gap-1 mb-2 ml-2">
+                            <label for="lantai-kamar" class="text-left">Lantai Kamar</label>
+                            <select id="add-lantai" class="font-raleway h-10 pl-1 border rounded-sm bg-blue-50 md:w-[500px] lg:w-full">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="grid gap-1 mb-2 ml-2">
+                            <label for="status" class="text-left">Status</label>
+                            <select id="add-status" id="status" class="font-raleway h-10 pl-1 border rounded-sm bg-blue-50 md:w-[500px] lg:w-full">
+                                <option value="tersedia">tersedia</option>
+                                <option value="penuh">penuh</option>
+                            </select>
+                        </div>
+                        <div class="grid gap-1 mb-2 ml-2">
+                            <label for="keterangan" class="text-left">Keterangan</label>
+                            <textarea id="add-keterangan" class="font-raleway h-10 pl-4 pt-2 border rounded-sm bg-blue-50 resize-none md:w-[500px] lg:w-full"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-4 my-4">
+                        <button type="button" class="bg-yellow-500 hover:bg-hover-yellow text-white font-bold py-2 px-4 rounded">Cancel</button>
+                        <button type="button" class="bg-blue-500 hover:bg-hover-blue text-white font-bold py-2 px-4 rounded">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!-- end modal tambah form -->
+    <!-- modal detail -->
+    <div id="modal-detail" class="hidden absolute top-0 min-w-[270px] w-full justify-center items-center shadow-lg overflow-auto">
+        <div class="grid grid-cols-1 bg-white px-8 py-8 rounded-sm lg:w-[900px] max-lg:max-h-[450px] overflow-auto">
+            <div class="flex justify-end pb-8">
+                <button type="button" class="py-1 px-3 rounded"><i class="ri-close-fill text-3xl text-secondary-gray hover:text-hover-blue"></i></button>
+            </div>
+            <div class="text-center text-3xl font-semibold">
+                Detail Lantai Kamar
+            </div>
+            <form id="detail" action="" class="text-sm mt-4 overflow-auto">
+                <div class="grid mx-sm:grid-cols-1 lg:grid-cols-2 lg:my-8 min-w-[350px]">
+                    <div class=" mb-2 m-2">
+                        <label for="lantai-kamar" class="text-left">Lantai Kamar</label>
+                        <span id="detail_lantai" class="border-collapse focus:outline-none"></span>
+                        <div class="h-[1px] bg-blue-200 lg:w-full"></div>
+                    </div>
+                    <div class=" mb-2 m-2">
+                        <label for="keterangan" class="text-left">Keterangan</label>
+                        <span id="detail_keterangan" class="border-collapse focus:outline-none"></span>
+                        <div class="h-[1px] bg-blue-200 lg:w-full"></div>
+                    </div>
+                    <div class=" mb-2 m-2">
+                        <label for="status" class="text-left">Status</label>
+                        <span id="detail_status" class="border-collapse focus:outline-none"></span>
+                        <div class="h-[1px] bg-blue-200 lg:w-full"></div>
+                    </div>
+                    <div class=" mb-2 m-2">
+                        <label for="foto" class="mr-2"></label>
+                        <div class=" w-fit p-8">
+                            <i class="ri-home-smile-line text-4xl"></i>
+                            <i class="ri-home-6-fill text-4xl"></i>
+                            <i class="ri-home-fill text-4xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end modal detail -->
+    <!-- modal detail hapus -->
+    <div id="modal-detail-hapus" class="hidden absolute top-0 min-w-[270px] w-full justify-center items-center shadow-lg overflow-auto">
+        <div class="grid grid-cols-1 bg-white px-8 py-8 rounded-sm lg:w-[900px] max-lg:max-h-[450px] overflow-auto">
+            <div class="text-center text-3xl font-semibold">
+                Detail
+            </div>
+            <form id="detail-hapus" action="" class="text-sm mt-4 overflow-auto">
+                <div class="grid mx-sm:grid-cols-1 lg:grid-cols-2 lg:my-8 min-w-[350px]">
+                    <span style="display: none"></span>
+                    <div class=" mb-2 m-2">
+                        <label for="lantai-kamar" class="text-left">Lantai Kamar</label>
+                        <span class="border-collapse focus:outline-none"></span>
+                        <div class="h-[1px] bg-blue-200 lg:w-full"></div>
+                    </div>
+                    <div class=" mb-2 m-2">
+                        <label for="keterangan" class="text-left">Keterangan</label>
+                        <span class="border-collapse focus:outline-none"></span>
+                        <div class="h-[1px] bg-blue-200 lg:w-full"></div>
+                    </div>
+                    <div class=" mb-2 m-2">
+                        <label for="status" class="text-left">Status</label>
+                        <span class="border-collapse focus:outline-none"></span>
+                        <div class="h-[1px] bg-blue-200 lg:w-full"></div>
+                    </div>
+                </div>
+                <div class="flex justify-center space-x-8 lg:space-x-24 my-4 mx-4">
+                    <button type="button" class="bg-red-400 hover:bg-hover-red text-white font-bold py-2 px-4 rounded w-24">Hapus</button>
+                    <button type="button" class="bg-yellow-500 hover:bg-hover-yellow text-white font-bold py-2 px-4 rounded w-24">Kembali</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end modal detail hapus -->
+    <!-- modal edit -->
+    <div id="modal-edit" class="hidden absolute top-0 min-w-[270px] w-full justify-center items-center shadow-lg overflow-auto">
+        <div class="grid grid-cols-1 bg-white px-8 py-16 rounded-sm lg:w-[900px] max-lg:max-h-[450px] overflow-auto">
+            <div class="text-center text-3xl font-semibold">
+                Edit Lantai Kamar
+            </div>
+            <form action="" class="text-sm mt-4 overflow-auto">
+                <div class="grid mx-sm:grid-cols-1 lg:grid-cols-2 lg:my-8 min-w-[350px]">
+                    <div class="grid gap-1 mb-2 ml-2">
+                        <label for="lantai-kamar" class="text-left">Lantai Kamar</label>
+                        <select id="lantai_edit" class="font-raleway h-10 pl-1 border rounded-sm bg-gray-50 md:w-[500px] lg:w-full">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="grid gap-1 mb-2 ml-2">
+                        <label for="status" class="text-left">Status</label>
+                        <select id="status_edit" class="font-raleway h-10 pl-1 border rounded-sm bg-gray-50 md:w-[500px] lg:w-full">
+                            <option value="tersedia">tersedia</option>
+                            <option value="penuh">penuh</option>
+                        </select>
+                    </div>
+                    <div class="grid gap-1 mb-2 ml-2">
+                        <label for="keterangan" class="text-left">Keterangan</label>
+                        <textarea id="keterangan_edit" class="font-raleway h-20 px-2 pt-2 border rounded-sm bg-gray-50 resize-none md:w-[500px] lg:w-full"></textarea>
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-4 my-4">
+                    <button type="button" class="bg-yellow-500 hover:bg-hover-yellow text-white font-bold py-2 px-4 rounded">Cancel</button>
+                    <button type="submit" class="bg-blue-500 hover:bg-hover-blue text-white font-bold py-2 px-4 rounded">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end modal edit -->
 </body>
 
 </html>
